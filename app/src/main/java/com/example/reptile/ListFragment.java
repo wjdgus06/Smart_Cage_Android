@@ -98,6 +98,14 @@ public class ListFragment extends Fragment {
             }
         });
 
+        viewBinding.btnNewGroup.setOnClickListener(new View.OnClickListener() { //새 케이지 등록 버튼
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), NewGroupActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return viewBinding.getRoot();
     }
 
