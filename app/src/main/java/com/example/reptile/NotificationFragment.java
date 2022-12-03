@@ -81,13 +81,22 @@ public class NotificationFragment extends Fragment {
                     });
 
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(60000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
         }).start();
+
+        viewBinding.btnDelete.setOnClickListener(new View.OnClickListener() { //알림 지우기 버튼
+            @Override
+            public void onClick(View view) {
+                adapter.clearItem();
+                viewBinding.listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
 
 
         return viewBinding.getRoot();
