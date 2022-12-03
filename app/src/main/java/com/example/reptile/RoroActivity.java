@@ -33,9 +33,8 @@ public class RoroActivity extends AppCompatActivity {
         });
 
         viewBinding.btnMoveSensor.setOnClickListener(view -> {
-            //Intent intent = new Intent(RoroActivity.this, roroSensorActivity.class);
-            //startActivity(intent);
-            //finish();
+            Intent intent = new Intent(RoroActivity.this, RoroSensorActivity.class);
+            startActivity(intent);
         });
 
         viewBinding.btnUpdateVal.setOnClickListener(view -> new Thread(new Runnable() {
