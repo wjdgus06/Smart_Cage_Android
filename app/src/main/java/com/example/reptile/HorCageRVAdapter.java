@@ -1,5 +1,8 @@
 package com.example.reptile;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +17,11 @@ import java.util.ArrayList;
 
 public class HorCageRVAdapter extends RecyclerView.Adapter<HorCageRVAdapter.ViewHolder>{
 
+    private Context context;
     private ArrayList<ReptileData> cageList;
 
-    public HorCageRVAdapter(ArrayList<ReptileData> list){
+    public HorCageRVAdapter(Context context, ArrayList<ReptileData> list){
+        this.context = context;
         this.cageList = list;
     }
 
@@ -42,6 +47,11 @@ public class HorCageRVAdapter extends RecyclerView.Adapter<HorCageRVAdapter.View
     public void onBindViewHolder(@NonNull HorCageRVAdapter.ViewHolder holder, int position) {
         holder.imgBtn.setImageResource(cageList.get(position).getImgPath());
         holder.cageName.setText(cageList.get(position).getReptileName());
+        holder.imgBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(context, CageInfoActivity.class);
+            intent.putExtra("cageName", cageList.get(position).getReptileName());
+            context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        });
     }
 
     @Override

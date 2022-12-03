@@ -42,7 +42,7 @@ public class VerTypeRVAdapter extends RecyclerView.Adapter<VerTypeRVAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull VerTypeRVAdapter.ViewHolder holder, int position) {
-        HorCageRVAdapter hRVAdapter = new HorCageRVAdapter(typeList.get(position).getReptileList());
+        HorCageRVAdapter hRVAdapter = new HorCageRVAdapter(context, typeList.get(position).getReptileList());
 
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false));
         holder.recyclerView.setAdapter(hRVAdapter);
