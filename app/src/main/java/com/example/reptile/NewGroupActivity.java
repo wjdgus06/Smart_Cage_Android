@@ -68,9 +68,25 @@ public class NewGroupActivity extends AppCompatActivity {
                             .key("rn").value(name)
                             .key("mnm").value(5)
                             .key("mid").array()
+                            .endArray()
                         .endObject()
                     .endObject().toString();
             System.out.println(retMsg);
+
+            /*
+            jsonStringer.object();
+            jsonStringer.key("m2m:grp");
+            jsonStringer.object();
+            jsonStringer.key("rn").value(name);
+            jsonStringer.key("mnm").value(5);
+            jsonStringer.key("mid").array();
+            jsonStringer.endArray();
+            jsonStringer.endObject();
+            jsonStringer.endObject();
+
+            System.out.println(retMsg);
+             */
+
             Log.d(TAG,"send string = " + retMsg);
         }
         catch(JSONException e)
@@ -102,7 +118,7 @@ public class NewGroupActivity extends AppCompatActivity {
             connection.setRequestProperty("Accept", "application/json");
             connection.setRequestProperty("X-M2M-RI", "dashboard_testing");
             connection.setRequestProperty("X-M2M-Origin", "dashboard_testing");
-            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            connection.setRequestProperty("Content-Type", "application/vnd.onem2m-res+json; ty=9");
 
             // OutputStream으로 Post데이터 넘겨주는 옵션
             connection.setDoOutput(true);
@@ -118,7 +134,7 @@ public class NewGroupActivity extends AppCompatActivity {
 
             System.out.println(responseCode);
             // inputStream으로 응답
-            if(responseCode==HttpURLConnection.HTTP_OK){
+            if(responseCode==201){
                 System.out.println("HTTP_OK");
                 is = connection.getInputStream();
                 // inputStream to String
