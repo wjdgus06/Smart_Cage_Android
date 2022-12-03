@@ -4,6 +4,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="25dp"
     tools:context=".NewGroupActivity">
+
+
+    <TextView
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="그룹 등록"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/group_name"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/login_edit_text"
+        android:hint="  그룹 이름 입력"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group" />
+
+    <TextView
+        android:id="@+id/group_init"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="540dp"
+        android:text="그룹 기본 설정"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/group_temperature"
+        android:layout_width="250dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/login_edit_text"
+        app:layout_constraintStart_toEndOf="@+id/text_group_tem"
+        app:layout_constraintTop_toBottomOf="@+id/group_init" />
+
+    <TextView
+        android:id="@+id/text_group_hum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="습도"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_group_tem" />
+
+    <TextView
+        android:id="@+id/text_group_bright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="조도"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_group_hum" />
+
+    <EditText
+        android:id="@+id/group_bright"
+        android:layout_width="250dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/login_edit_text"
+        app:layout_constraintStart_toEndOf="@+id/text_group_bright"
+        app:layout_constraintTop_toBottomOf="@+id/group_humidity" />
+
+    <EditText
+        android:id="@+id/group_humidity"
+        android:layout_width="250dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/login_edit_text"
+        app:layout_constraintStart_toEndOf="@+id/text_group_hum"
+        app:layout_constraintTop_toBottomOf="@+id/group_temperature" />
+
+    <TextView
+        android:id="@+id/text_group_tem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="온도"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_init" />
+
+    <Button
+        android:id="@+id/group_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#3E3E3E"
+        android:text="등록"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_bright" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
