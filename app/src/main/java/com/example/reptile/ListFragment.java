@@ -194,7 +194,7 @@ public class ListFragment extends Fragment {
                 view = (View) convertView;
             }
 
-            TextView tv_cage = (TextView) convertView.findViewById(R.id.tv_noti);
+            TextView tv_cage = (TextView) convertView.findViewById(R.id.tv_cage);
 
 
             tv_cage.setText(itemList.getCage());
