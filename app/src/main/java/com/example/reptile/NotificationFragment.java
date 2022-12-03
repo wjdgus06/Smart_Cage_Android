@@ -46,28 +46,35 @@ public class NotificationFragment extends Fragment {
             @Override
             public void run() {
                 //adapter.clearItem();
-                data_temp = getJsonTempData();
-                data_hum = getJsonHumData();
-                data_bright = getJsonBrightData();
+                while (true) {
+                    data_temp = getJsonTempData();
+                    data_hum = getJsonHumData();
+                    data_bright = getJsonBrightData();
 
-                if (Integer.parseInt(data_temp) > 60) {
-                    System.out.println("why?");
-                    adapter.addItem(new NotiLVItem("RoRo 케이지의 온도를 확인하세요!"));
-                }
-                if (Integer.parseInt(data_hum) > 60)
-                    adapter.addItem(new NotiLVItem("RoRo 케이지의 습도를 확인하세요!"));
-                if (Integer.parseInt(data_bright) > 60)
-                    adapter.addItem(new NotiLVItem("RoRo 케이지의 조도를 확인하세요!"));
-
-                //adapter.addItem(new ManLVItem(mid_list[i]));
-
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        viewBinding.listView.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
+                    if (Integer.parseInt(data_temp) > 60) {
+                        System.out.println("why?");
+                        adapter.addItem(new NotiLVItem("RoRo 케이지의 온도를 확인하세요!"));
                     }
-                });
+                    if (Integer.parseInt(data_hum) > 60)
+                        adapter.addItem(new NotiLVItem("RoRo 케이지의 습도를 확인하세요!"));
+                    if (Integer.parseInt(data_bright) > 60)
+                        adapter.addItem(new NotiLVItem("RoRo 케이지의 조도를 확인하세요!"));
+
+                    //adapter.addItem(new ManLVItem(mid_list[i]));
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            viewBinding.listView.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }).start();
 
