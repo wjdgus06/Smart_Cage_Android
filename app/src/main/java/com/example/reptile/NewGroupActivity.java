@@ -134,7 +134,7 @@ public class NewGroupActivity extends AppCompatActivity {
 
             System.out.println(responseCode);
             // inputStream으로 응답
-            if(responseCode==201){
+            if(responseCode==HttpURLConnection.HTTP_OK){
                 System.out.println("HTTP_OK");
                 is = connection.getInputStream();
                 // inputStream to String
