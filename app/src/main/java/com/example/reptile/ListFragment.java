@@ -1,6 +1,8 @@
 package com.example.reptile;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.reptile.databinding.FragmentListBinding;
@@ -27,22 +30,66 @@ public class ListFragment extends Fragment {
 
     FragmentListBinding viewBinding;
     private String TAG = this.getClass().getSimpleName();
-    //    private String TAG = CageManagementActivity.class.getSimpleName();
 
     //리스트뷰 변수
     String data;
-    //ListView listView;
-    //ListViewAdapter adapter;
+    ListViewAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         viewBinding = FragmentListBinding.inflate(getLayoutInflater());
 
 
+        //리스트뷰 변수
+        adapter = new ListViewAdapter(); //리스트에 adpater 연결
 
-        return inflater.inflate(R.layout.fragment_list, container, false);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.clearItem();
+                data = getJsonTempData();
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        viewBinding.listView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+            }
+        }).start();
+
+        viewBinding.btnUpdate.setOnClickListener(new View.OnClickListener() {  //새로고침 버튼
+            @Override
+            public void onClick(View view) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.clearItem();
+                        data = getJsonTempData();
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                viewBinding.listView.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                    }
+                }).start();
+            }
+        });
+
+        viewBinding.btnNewCage.setOnClickListener(new View.OnClickListener() { //새 케이지 등록 버튼
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(getActivity(), CageUpdateActivity.class);
+                //startActivity(intent);
+            }
+        });
+
+        return viewBinding.getRoot();
     }
 
 
@@ -94,7 +141,7 @@ public class ListFragment extends Fragment {
                 else
                     mid_list[i] = mid_list[i].substring(9, mid_list[i].length() - 1);
 
-                //adapter.addItem(new CageItemList(mid_list[i]));
+                adapter.addItem(new ManLVItem(mid_list[i]));
 
                 //result.append(mid_list[i]);
                 //result.append("\n");
@@ -149,10 +196,10 @@ public class ListFragment extends Fragment {
                 view = (View) convertView;
             }
 
-            //TextView tv_cage = (TextView) convertView.findViewById(R.id.tv_cage);
+            TextView tv_cage = (TextView) convertView.findViewById(R.id.tv_cage);
 
 
-            //tv_cage.setText(itemList.getCage());
+            tv_cage.setText(itemList.getCage());
 
             Log.d(TAG, "getView() - [ "+position+" ] "+itemList.getCage());
 
