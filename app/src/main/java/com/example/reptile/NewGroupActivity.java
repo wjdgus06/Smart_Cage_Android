@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -49,7 +50,8 @@ public class NewGroupActivity extends AppCompatActivity {
                 System.out.println(name);
                 Toast myToast = Toast.makeText(getApplicationContext(),"Click", Toast.LENGTH_SHORT);
                 myToast.show();
-                SendJsonToServer(makeJsonMsg(name));
+
+                SendJsonToServer( makeJsonMsg(name));
             }
         });
 
@@ -64,8 +66,8 @@ public class NewGroupActivity extends AppCompatActivity {
             retMsg = jsonStringer.object()
                         .key("m2m:grp").object()
                             .key("rn").value(name)
-                            .key("mnm").value("5")
-                            .key("mid").value("[]")
+                            .key("mnm").value(5)
+                            .key("mid").array()
                         .endObject()
                     .endObject().toString();
             System.out.println(retMsg);
@@ -87,7 +89,7 @@ public class NewGroupActivity extends AppCompatActivity {
         HttpURLConnection connection = null;
 
         String response="";
-        String queryUrl = "http://182.221.64.162:7579/Mobius/";
+        String queryUrl = "http://182.221.64.162:7579/Mobius";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -100,6 +102,7 @@ public class NewGroupActivity extends AppCompatActivity {
             connection.setRequestProperty("Accept", "application/json");
             connection.setRequestProperty("X-M2M-RI", "dashboard_testing");
             connection.setRequestProperty("X-M2M-Origin", "dashboard_testing");
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
 
             // OutputStream으로 Post데이터 넘겨주는 옵션
             connection.setDoOutput(true);
@@ -113,7 +116,7 @@ public class NewGroupActivity extends AppCompatActivity {
 
             responseCode = connection.getResponseCode();
 
-            System.out.println("test")
+            System.out.println(responseCode);
             // inputStream으로 응답
             if(responseCode==HttpURLConnection.HTTP_OK){
                 System.out.println("HTTP_OK");
@@ -136,6 +139,7 @@ public class NewGroupActivity extends AppCompatActivity {
                 }
                 else
                     response = "Error";
+                System.out.println(response);
             }
 
         }
