@@ -59,4 +59,12 @@
         android:text="새 케이지 등록"
         android:textColor="#FFFFFF" />
 
+    <Button
+        android:id="@+id/btn_newGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:backgroundTint="#494949"
+        android:text="새 그룹 등록" />
+
 </LinearLayout>
