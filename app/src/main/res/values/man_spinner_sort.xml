@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner_sort">
+        <item>도마뱀류</item>
+        <item>거북류</item>
+        <item>악어류</item>
+        <item>뱀류</item>
+    </string-array>
+</resources>

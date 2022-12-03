@@ -84,8 +84,8 @@ public class ListFragment extends Fragment {
         viewBinding.btnNewCage.setOnClickListener(new View.OnClickListener() { //새 케이지 등록 버튼
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(getActivity(), CageUpdateActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(getActivity(), ManCageUpdateActivity.class);
+                startActivity(intent);
             }
         });
 
