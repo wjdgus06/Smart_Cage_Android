@@ -109,16 +109,15 @@ public class ListFragment extends Fragment {
 
 
     /* 리스트뷰 어댑터 */
-    /*
     public class ListViewAdapter extends BaseAdapter {
-        ArrayList<CageItemList> items = new ArrayList<CageItemList>();
+        ArrayList<ManLVItem> items = new ArrayList<ManLVItem>();
 
         @Override
         public int getCount() {
             return items.size();
         }
 
-        public void addItem(CageItemList item) {
+        public void addItem(ManLVItem item) {
             items.add(item);
         }
 
@@ -139,26 +138,26 @@ public class ListFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup viewGroup) {
             final Context context = viewGroup.getContext();
-            final CageItemList itemList = items.get(position);
+            final ManLVItem itemList = items.get(position);
 
             if(convertView == null) {
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = inflater.inflate(R.layout.cage_listview_item, viewGroup, false);
+                convertView = inflater.inflate(R.layout.man_lv_cagelist, viewGroup, false);
 
             } else {
                 View view = new View(context);
                 view = (View) convertView;
             }
 
-            TextView tv_cage = (TextView) convertView.findViewById(R.id.tv_cage);
+            //TextView tv_cage = (TextView) convertView.findViewById(R.id.tv_cage);
 
 
-            tv_cage.setText(itemList.getCage());
+            //tv_cage.setText(itemList.getCage());
 
             Log.d(TAG, "getView() - [ "+position+" ] "+itemList.getCage());
 
             return convertView;  //뷰 객체 반환
         }
-    } */
+    }
 
 }
