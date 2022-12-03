@@ -34,7 +34,8 @@ public class CageInfoActivity extends AppCompatActivity {
         });
 
         viewBinding.btnMoveSensor.setOnClickListener(view -> {
-            Intent intent = new Intent(this, RoroSensorActivity.class);
+            Intent intent = new Intent(this, SensorActivity.class);
+            intent.putExtra("cageName", repName);
             startActivity(intent);
         });
 
