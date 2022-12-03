@@ -1,5 +1,6 @@
 package com.example.reptile;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -32,9 +33,18 @@ public class NotificationFragment extends Fragment {
     String data_temp, data_hum, data_bright;
     String string;
 
+    Activity activity;
 
     //리스트뷰 변수
     ListViewAdapter adapter;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity)
+            activity = (Activity) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,13 +72,14 @@ public class NotificationFragment extends Fragment {
 
                     //adapter.addItem(new ManLVItem(mid_list[i]));
 
-                    getActivity().runOnUiThread(new Runnable() {
+                    activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             viewBinding.listView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
                         }
                     });
+
                     try {
                         Thread.sleep(5000);
                     } catch (InterruptedException e) {

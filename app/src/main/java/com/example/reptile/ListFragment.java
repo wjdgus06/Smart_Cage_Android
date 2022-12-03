@@ -1,5 +1,6 @@
 package com.example.reptile;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,9 +30,19 @@ public class ListFragment extends Fragment {
     FragmentListBinding viewBinding;
     private String TAG = this.getClass().getSimpleName();
 
+    Activity activity;
+
     //리스트뷰 변수
     String data;
     ListViewAdapter adapter;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity)
+            activity = (Activity) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,7 +59,7 @@ public class ListFragment extends Fragment {
                 adapter.clearItem();
                 data = getJsonTempData();
 
-                getActivity().runOnUiThread(new Runnable() {
+                activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         viewBinding.listView.setAdapter(adapter);
