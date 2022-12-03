@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">reptile</string>
+    <string name="login_en">Login</string>
+    <string name="login">로그인</string>
+    <string name="signup">회원가입</string>
+    <string name="id">아이디</string>
+    <string name="pw">비밀번호</string>
+    <string name="recent_photos">최근 사진 확인</string>
+    <string name="update">업데이트</string>
+    <string name="description_btn_back">이전 화면으로 이동</string>
+    <string name="cage_condition_en">🌱 Cage condition</string>
+    <string name="uniqueness">📝 특이사항</string>
+    <string name="temperature">🌡️ 온도 </string>
+    <string name="humidity">💧 습도 </string>
+    <string name="light">☀ 조도 </string>
+    <string name="graph">📊 그래프</string>
+    <string name="ctl_temp">❤ 온도 조절 </string>
+    <string name="ctl_light">🧡 조도 조절 </string>
+    <string name="describe_cage_owner"> 님의 케이지 목록</string>
 </resources>
