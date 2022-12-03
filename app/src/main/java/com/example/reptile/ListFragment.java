@@ -1,6 +1,5 @@
 package com.example.reptile;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.reptile.databinding.FragmentListBinding;
@@ -196,7 +194,7 @@ public class ListFragment extends Fragment {
                 view = (View) convertView;
             }
 
-            TextView tv_cage = (TextView) convertView.findViewById(R.id.tv_cage);
+            TextView tv_cage = (TextView) convertView.findViewById(R.id.tv_noti);
 
 
             tv_cage.setText(itemList.getCage());
