@@ -56,9 +56,8 @@
         android:backgroundTint="@color/btn_gray"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.63"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_pw" />
+        app:layout_constraintTop_toBottomOf="@id/et_pw" />
 
     <Button
         android:id="@+id/btn_register"

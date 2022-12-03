@@ -17,4 +17,6 @@
     <string name="ctl_temp">❤ 온도 조절 </string>
     <string name="ctl_light">🧡 조도 조절 </string>
     <string name="describe_cage_owner"> 님의 케이지 목록</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
