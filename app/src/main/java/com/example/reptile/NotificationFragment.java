@@ -84,16 +84,22 @@ public class NotificationFragment extends Fragment {
                     data_bright = getJsonBrightData();
 
                     if (Integer.parseInt(data_temp) > 60) {
-                        System.out.println("why?");
                         adapter.addItem(new NotiLVItem("RoRo 케이지의 온도를 확인하세요!"));
-                        sendNotification();
+                        sendNotification("RoRo 케이지의 온도를 확인하세요!");
+                        System.out.println("noti1");
                     }
-                    /*
-                    if (Integer.parseInt(data_hum) > 60)
+
+                    if (Integer.parseInt(data_hum) > 1000){
                         adapter.addItem(new NotiLVItem("RoRo 케이지의 습도를 확인하세요!"));
-                    if (Integer.parseInt(data_bright) > 60)
+                        sendNotification("RoRo 케이지의 습도를 확인하세요!");
+                        System.out.println("noti2");
+                    }
+                    if (Integer.parseInt(data_bright) > 1000) {
                         adapter.addItem(new NotiLVItem("RoRo 케이지의 조도를 확인하세요!"));
-                     */
+                        sendNotification("RoRo 케이지의 조도를 확인하세요!");
+                        System.out.println("noti3");
+                    }
+
 
                     //adapter.addItem(new ManLVItem(mid_list[i]));
 
@@ -106,7 +112,7 @@ public class NotificationFragment extends Fragment {
                     });
 
                     try {
-                        Thread.sleep(60000);
+                        Thread.sleep(60000); //1분 (5분으로 수정)
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -342,18 +348,18 @@ public class NotificationFragment extends Fragment {
     }
 
     // Notification Builder를 만드는 메소드
-    private NotificationCompat.Builder getNotificationBuilder() {
+    private NotificationCompat.Builder getNotificationBuilder(String str) {
         NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(activity.getApplicationContext(), PRIMARY_CHANNEL_ID)
-                .setContentTitle("You've been notified!")
-                .setContentText("This is your notification text.")
-                .setSmallIcon(R.drawable.ic_baseline_more_vert);
+                .setContentTitle("알림")
+                .setContentText(str)
+                .setSmallIcon(R.drawable.btnlizard);
         return notifyBuilder;
     }
 
     // Notification을 보내는 메소드
-    public void sendNotification(){
+    public void sendNotification(String str){
         // Builder 생성
-        NotificationCompat.Builder notifyBuilder = getNotificationBuilder();
+        NotificationCompat.Builder notifyBuilder = getNotificationBuilder(str);
         // Manager를 통해 notification 디바이스로 전달
         mNotificationManager.notify(NOTIFICATION_ID,notifyBuilder.build());
     }
