@@ -2,6 +2,8 @@ package com.example.reptile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Base64;
@@ -29,6 +31,8 @@ public class RecentPhotoActivity extends AppCompatActivity {
             @Override
             public void run() {
                 String data = getJsonPhotopData();
+                String img = getBase64decode(data);
+                viewBinding.imgCage.setImageBitmap(StringToBitmap(img));
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -87,5 +91,17 @@ public class RecentPhotoActivity extends AppCompatActivity {
     //Base64 디코딩 - 문자열 반환
     public static String getBase64decode(String content){
         return new String(Base64.decode(content, 0)); //TODO Base64 암호화된 문자열을 >> 복호화된 원본 문자열로 반환
+    }
+
+    //string을 Bitmap으로
+    public static Bitmap StringToBitmap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 }
