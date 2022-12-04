@@ -85,7 +85,7 @@ public class ManCageUpdateActivity extends AppCompatActivity {
         editname = findViewById(R.id.editText);
         aename = editname.getText().toString(); // ae이름
 
-        aename = "test-ae-1";
+        // aename = "test-ae-1";  테스트용
 
         Registerbutton = (Button) findViewById(R.id.button4);
         Registerbutton.setOnClickListener(new View.OnClickListener() {
