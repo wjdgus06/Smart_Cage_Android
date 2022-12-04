@@ -6,11 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,37 +20,35 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 
 public class NewGroupActivity extends AppCompatActivity {
 
-    EditText editname;
-    String name;
+    EditText editName;
     Button btn_Register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_group);
-        SharedPreferences grp_preferences = getSharedPreferences("group", MODE_PRIVATE);
 
-        String test ="test_string";
+        SharedPreferences grp_preferences = getSharedPreferences("group", MODE_PRIVATE);
+        GrpData grpData = new GrpData();
 
         btn_Register = (Button) findViewById(R.id.group_register);
 
-        btn_Register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editname = findViewById(R.id.group_name);
-                // 아무것도 입력 안해도 그룹 생성되니 주의
-                name = editname.getText().toString();
+        btn_Register.setOnClickListener(view -> {
+            editName = findViewById(R.id.group_name);
+            String name = editName.getText().toString();
 
+            if(name.length() == 0){
+                Toast.makeText(getApplicationContext(), "Input your new group name!", Toast.LENGTH_SHORT).show();
+            } else {
                 // putString
                 SharedPreferences.Editor editor = grp_preferences.edit();
                 editor.putString("grp_name", name);
+                grpData.addTypeList(name);
 
                 // 저장
                 editor.commit();
@@ -70,7 +66,6 @@ public class NewGroupActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     private static String makeJsonMsg(String name){

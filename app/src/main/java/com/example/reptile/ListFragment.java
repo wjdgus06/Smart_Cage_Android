@@ -51,11 +51,12 @@ public class ListFragment extends Fragment {
         viewBinding = FragmentListBinding.inflate(getLayoutInflater());
 
         //리스트뷰 변수
-        adapter = new ListViewAdapter(); //리스트에 adpater 연결
+        adapter = new ListViewAdapter(); //리스트에 adapter 연결
         initializeListData();
 
         viewBinding.btnUpdate.setOnClickListener(view -> {
             Toast.makeText(getContext(), "UPDATE!!" , Toast.LENGTH_SHORT).show();
+            initializeListData();
         });
 
         viewBinding.btnNewCage.setOnClickListener(new View.OnClickListener() { //새 케이지 등록 버튼
@@ -78,7 +79,7 @@ public class ListFragment extends Fragment {
     }
 
     public void initializeListData(){
-        String[] typeNameList = (new GrpData()).getTypeList();
+        ArrayList<String> typeNameList = (new GrpData()).getTypeList();
         adapter.clearItem();
         for (String typeName: typeNameList) {
             adapter.addItem(new ManLVItem(typeName));
