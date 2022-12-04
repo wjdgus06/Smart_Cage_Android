@@ -98,7 +98,7 @@ public class ListFragment extends Fragment {
             }
         });
 
-        viewBinding.btnNewGroup.setOnClickListener(new View.OnClickListener() { //새 케이지 등록 버튼
+        viewBinding.btnNewGroup.setOnClickListener(new View.OnClickListener() { //새 그룹 등록 버튼
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), NewGroupActivity.class);
