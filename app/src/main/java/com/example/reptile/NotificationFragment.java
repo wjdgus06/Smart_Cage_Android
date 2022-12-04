@@ -51,7 +51,7 @@ public class NotificationFragment extends Fragment {
     private NotificationManager mNotificationManager;
 
     // Notification에 대한 ID 생성
-    private static final int NOTIFICATION_ID = 0;
+    private static int NOTIFICATION_ID = 0;
 
     @Override
     public void onAttach(Context context) {
@@ -82,22 +82,39 @@ public class NotificationFragment extends Fragment {
                     data_temp = getJsonTempData();
                     data_hum = getJsonHumData();
                     data_bright = getJsonBrightData();
+                    NOTIFICATION_ID = 0;
 
                     if (Integer.parseInt(data_temp) > 60) {
                         adapter.addItem(new NotiLVItem("RoRo 케이지의 온도를 확인하세요!"));
                         sendNotification("RoRo 케이지의 온도를 확인하세요!");
                         System.out.println("noti1");
+
                     }
 
-                    if (Integer.parseInt(data_hum) > 1000){
+                    try {
+                        Thread.sleep(1000); //1분 (5분으로 수정)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (Integer.parseInt(data_hum) > 60){
+                        NOTIFICATION_ID = 1;
                         adapter.addItem(new NotiLVItem("RoRo 케이지의 습도를 확인하세요!"));
                         sendNotification("RoRo 케이지의 습도를 확인하세요!");
                         System.out.println("noti2");
+
                     }
-                    if (Integer.parseInt(data_bright) > 1000) {
+                    try {
+                        Thread.sleep(1000); //1분 (5분으로 수정)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (Integer.parseInt(data_bright) > 60) {
+                        NOTIFICATION_ID = 2;
                         adapter.addItem(new NotiLVItem("RoRo 케이지의 조도를 확인하세요!"));
                         sendNotification("RoRo 케이지의 조도를 확인하세요!");
                         System.out.println("noti3");
+
                     }
 
 
@@ -106,6 +123,7 @@ public class NotificationFragment extends Fragment {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            System.out.println("InrunonUiThread");
                             viewBinding.listView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
                         }
@@ -363,5 +381,7 @@ public class NotificationFragment extends Fragment {
         // Manager를 통해 notification 디바이스로 전달
         mNotificationManager.notify(NOTIFICATION_ID,notifyBuilder.build());
     }
+
+
 
 }
