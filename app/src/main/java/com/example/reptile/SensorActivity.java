@@ -8,16 +8,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
-import com.example.reptile.databinding.ActivityRoroSensorBinding;
+import com.example.reptile.databinding.ActivitySensorBinding;
 
 public class SensorActivity extends AppCompatActivity {
 
-    ActivityRoroSensorBinding viewBinding;
+    ActivitySensorBinding viewBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewBinding = ActivityRoroSensorBinding.inflate(getLayoutInflater());
+        viewBinding = ActivitySensorBinding.inflate(getLayoutInflater());
 
         String repName = getIntent().getStringExtra("cageName");
         viewBinding.pageTitle.setText(repName+"'s 센서");

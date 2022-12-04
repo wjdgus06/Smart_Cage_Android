@@ -7,7 +7,6 @@ import android.os.StrictMode;
 import android.util.Base64;
 
 import com.example.reptile.databinding.ActivityRecentPhotoBinding;
-import com.example.reptile.databinding.ActivityRoroBinding;
 
 import org.json.JSONObject;
 
@@ -19,7 +18,6 @@ import java.net.URL;
 public class RecentPhotoActivity extends AppCompatActivity {
 
     ActivityRecentPhotoBinding viewBinding;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
