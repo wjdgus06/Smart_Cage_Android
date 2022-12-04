@@ -46,15 +46,18 @@ public class HomeFragment extends Fragment {
     }
 
     public void initializeListData(){
-        String[] typeNameList = {"test-grp1", "test-grp2"};
+        ArrayList<String> typeNameList = (new GrpData()).getTypeList();
         int drawInt = R.drawable.btnlizardxml;  // cage 기본 이미지
         for (String typeName: typeNameList) {
             ArrayList<ReptileData> cageDataList = new ArrayList<>();
             ArrayList<String> cageNameList = this.getCageDataByJson(typeName);
+            if(cageNameList == null)
+                continue;;
             for(String cageName: cageNameList){
                 cageDataList.add(new ReptileData(cageName, drawInt));
             }
             typeList.add(new TypeData(typeName, cageDataList));
+            Log.d("TypeListTest", "initializeListData: " + typeName);
         }
     }
 
@@ -82,6 +85,10 @@ public class HomeFragment extends Fragment {
 
             int responseCode = connection.getResponseCode();
 
+            if (responseCode != HttpURLConnection.HTTP_OK){
+                // ae 등록이 확인하려면 logd를 찍어보자
+                return null;
+            }
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuffer stringBuffer = new StringBuffer();
             String inputLine;

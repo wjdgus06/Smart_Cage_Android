@@ -5,12 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GrpData {
-    private ArrayList<String> typeList;
+    private static ArrayList<String> typeList = new ArrayList<String>(){{
+        add("test-grp1");
+        add("test-grp2");
+    }};
 
     public GrpData(){
-        this.typeList = new ArrayList<>();
-        typeList.add("test-grp1");
-        typeList.add("test-grp2");
+
     }
 
     public ArrayList<String> getTypeList() {
