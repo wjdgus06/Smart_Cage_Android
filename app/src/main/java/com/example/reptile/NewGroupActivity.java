@@ -4,6 +4,8 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -35,6 +37,7 @@ public class NewGroupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_group);
+        SharedPreferences grp_preferences = getSharedPreferences("group", MODE_PRIVATE);
 
         String test ="test_string";
 
@@ -46,12 +49,23 @@ public class NewGroupActivity extends AppCompatActivity {
                 editname = findViewById(R.id.group_name);
                 name = editname.getText().toString();
 
-                System.out.println("INONCLICK");
-                System.out.println(name);
+                // putString
+                SharedPreferences.Editor editor = grp_preferences.edit();
+                editor.putString("grp_name", name);
+
+                // 저장
+                editor.commit();
+                editor.apply();
+
                 Toast myToast = Toast.makeText(getApplicationContext(),"Click", Toast.LENGTH_SHORT);
                 myToast.show();
 
                 SendJsonToServer( makeJsonMsg(name));
+
+
+                Intent intent = new Intent(NewGroupActivity.this, ManCageUpdateActivity.class);
+                intent.putExtra("group_name", name);
+                startActivity(intent);
             }
         });
 
