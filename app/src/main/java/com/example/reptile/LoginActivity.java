@@ -54,7 +54,10 @@ public class LoginActivity extends AppCompatActivity {
 
         viewBinding.btnRegister.setOnClickListener(view -> {
             // 회원가입 액티비티 생성 후 연결
-            Toast.makeText(getApplicationContext(), "Test btn_register", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "회원가입을 하자", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, SignUpActivity.class);
+            startActivity(intent);
+            finish();
         });
 
         setContentView(viewBinding.getRoot());
