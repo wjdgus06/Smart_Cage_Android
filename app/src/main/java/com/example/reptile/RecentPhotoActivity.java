@@ -27,30 +27,37 @@ public class RecentPhotoActivity extends AppCompatActivity {
         viewBinding = ActivityRecentPhotoBinding.inflate(getLayoutInflater());
         setContentView(viewBinding.getRoot());
 
+        String cageName = getIntent().getStringExtra("cageName");
+
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String data = getJsonPhotopData();
+                //String data = getJsonPhotopData(cageName);
+                String data = "RnVjayB5b3U=";
                 String img = getBase64decode(data);
-                viewBinding.imgCage.setImageBitmap(StringToBitmap(img));
+                System.out.println(img);
+
+
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //
+                        System.out.println("뭐가 문젠데");
+                        //viewBinding.imgCage.setImageBitmap(StringToBitmap(img));
                     }
                 });
+
             }
         }).start();
 
     }
 
-    String getJsonPhotopData() {
+    String getJsonPhotopData(String cageName) {
 
         String response = "";
         String con = "";
 
-        String queryUrl = "http://182.221.64.162:7579/Mobius/test-ae-1/camera/la";
+        String queryUrl = "http://182.221.64.162:7579/Mobius/"+cageName+"/camera/la";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
