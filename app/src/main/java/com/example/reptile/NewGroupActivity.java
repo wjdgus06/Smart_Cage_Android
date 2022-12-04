@@ -47,6 +47,7 @@ public class NewGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editname = findViewById(R.id.group_name);
+                // 아무것도 입력 안해도 그룹 생성되니 주의
                 name = editname.getText().toString();
 
                 // putString
@@ -57,7 +58,8 @@ public class NewGroupActivity extends AppCompatActivity {
                 editor.commit();
                 editor.apply();
 
-                Toast myToast = Toast.makeText(getApplicationContext(),"Click", Toast.LENGTH_SHORT);
+                Toast myToast = Toast.makeText(getApplicationContext(),
+                        "그룹이 생성되었습니다. 케이지를 등록해주세요!", Toast.LENGTH_SHORT);
                 myToast.show();
 
                 SendJsonToServer( makeJsonMsg(name));

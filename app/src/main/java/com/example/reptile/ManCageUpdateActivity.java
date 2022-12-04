@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.example.reptile.databinding.ActivityManCageUpdateBinding;
 
@@ -24,10 +25,11 @@ public class ManCageUpdateActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String myData = intent.getStringExtra("group_name");
-        // toast메시지로 그룹이 생성되었습니다! 케이지를 등록해주세용~
+
 
         SharedPreferences preferences = getSharedPreferences("group", MODE_PRIVATE);
         String grp_name = preferences.getString("grp_name","NO_GROUP");
+        // 그룹 새로 등록하기 전까지 처음 등록한 group이름 유지
 
         System.out.println(grp_name);
 
