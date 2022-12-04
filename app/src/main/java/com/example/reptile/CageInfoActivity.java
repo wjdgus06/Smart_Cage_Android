@@ -2,12 +2,13 @@ package com.example.reptile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 
-import com.example.reptile.databinding.ActivityRoroBinding;
+import com.example.reptile.databinding.ActivityCageInfoBinding;
 
 import org.json.JSONObject;
 
@@ -16,23 +17,25 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class RoroActivity extends AppCompatActivity {
+public class CageInfoActivity extends AppCompatActivity {
 
-    ActivityRoroBinding viewBinding;
+    ActivityCageInfoBinding viewBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewBinding = ActivityRoroBinding.inflate(getLayoutInflater());
+        viewBinding = ActivityCageInfoBinding.inflate(getLayoutInflater());
+
+        String repName = getIntent().getStringExtra("cageName");
+        viewBinding.cageName.setText(repName);
 
         viewBinding.btnBack.setOnClickListener(view -> {
-            Intent intent = new Intent(RoroActivity.this, ListActivity.class);
-            startActivity(intent);
             finish();
         });
 
         viewBinding.btnMoveSensor.setOnClickListener(view -> {
-            Intent intent = new Intent(RoroActivity.this, RoroSensorActivity.class);
+            Intent intent = new Intent(this, SensorActivity.class);
+            intent.putExtra("cageName", repName);
             startActivity(intent);
         });
 
@@ -40,9 +43,9 @@ public class RoroActivity extends AppCompatActivity {
             @Override
             public void run() {
                 while (true) {
-                    String data = getJsonTempData();
-                    String data_hum = getJsonHumData();
-                    String data_bright = getJsonBrightData();
+                    String data = getJsonTempData(repName);
+                    String data_hum = getJsonHumData(repName);
+                    String data_bright = getJsonBrightData(repName);
 
                     runOnUiThread(new Runnable() {
                         @Override
@@ -63,12 +66,12 @@ public class RoroActivity extends AppCompatActivity {
         setContentView(viewBinding.getRoot());
     }
 
-    String getJsonTempData() {
+    String getJsonTempData(String cageName) {
 
         String response = "";
         String con = "";
 
-        String queryUrl = "http://182.221.64.162:7579/Mobius/test-ae-1/temperature/la";
+        String queryUrl = "http://182.221.64.162:7579/Mobius/"+cageName+"/temperature/la";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -107,12 +110,12 @@ public class RoroActivity extends AppCompatActivity {
     }
 
 
-    String getJsonHumData() {
+    String getJsonHumData(String cageName) {
 
         String response_hum = "";
         String con_hum = "";
 
-        String queryUrl_hum = "http://182.221.64.162:7579/Mobius/test-ae-1/humidity/la";
+        String queryUrl_hum = "http://182.221.64.162:7579/Mobius/"+cageName+"/humidity/la";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -152,11 +155,11 @@ public class RoroActivity extends AppCompatActivity {
         return con_hum + "%";
     }
 
-    String getJsonBrightData(){
+    String getJsonBrightData(String cageName){
         String response_bright = "";
         String con_bright = "";
 
-        String queryUrl_bright = "http://182.221.64.162:7579/Mobius/test-ae-1/brightness/la";
+        String queryUrl_bright = "http://182.221.64.162:7579/Mobius/"+cageName+"/brightness/la";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
