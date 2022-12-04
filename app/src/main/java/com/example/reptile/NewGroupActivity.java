@@ -116,8 +116,8 @@ public class NewGroupActivity extends AppCompatActivity {
 
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Accept", "application/json");
-            connection.setRequestProperty("X-M2M-RI", "dashboard_testing");
-            connection.setRequestProperty("X-M2M-Origin", "dashboard_testing");
+            connection.setRequestProperty("X-M2M-RI", "dks");
+            connection.setRequestProperty("X-M2M-Origin", "dks");
             connection.setRequestProperty("Content-Type", "application/vnd.onem2m-res+json; ty=9");
 
             // OutputStream으로 Post데이터 넘겨주는 옵션
