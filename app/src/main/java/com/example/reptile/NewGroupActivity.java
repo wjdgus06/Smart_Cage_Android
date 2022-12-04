@@ -4,6 +4,8 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -35,6 +37,7 @@ public class NewGroupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_group);
+        SharedPreferences grp_preferences = getSharedPreferences("group", MODE_PRIVATE);
 
         String test ="test_string";
 
@@ -44,14 +47,27 @@ public class NewGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editname = findViewById(R.id.group_name);
+                // 아무것도 입력 안해도 그룹 생성되니 주의
                 name = editname.getText().toString();
 
-                System.out.println("INONCLICK");
-                System.out.println(name);
-                Toast myToast = Toast.makeText(getApplicationContext(),"Click", Toast.LENGTH_SHORT);
+                // putString
+                SharedPreferences.Editor editor = grp_preferences.edit();
+                editor.putString("grp_name", name);
+
+                // 저장
+                editor.commit();
+                editor.apply();
+
+                Toast myToast = Toast.makeText(getApplicationContext(),
+                        "그룹이 생성되었습니다. 케이지를 등록해주세요!", Toast.LENGTH_SHORT);
                 myToast.show();
 
                 SendJsonToServer( makeJsonMsg(name));
+
+
+                Intent intent = new Intent(NewGroupActivity.this, ManCageUpdateActivity.class);
+                intent.putExtra("group_name", name);
+                startActivity(intent);
             }
         });
 
