@@ -133,7 +133,10 @@ public class NewGroupActivity extends AppCompatActivity {
             responseCode = connection.getResponseCode();
 
             System.out.println(responseCode);
+
+
             // inputStream으로 응답
+            // 요 부분 잘 안됨....
             if(responseCode==HttpURLConnection.HTTP_OK){
                 System.out.println("HTTP_OK");
                 is = connection.getInputStream();
