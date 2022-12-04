@@ -49,25 +49,10 @@ public class ListFragment extends Fragment {
                              Bundle savedInstanceState) {
         viewBinding = FragmentListBinding.inflate(getLayoutInflater());
 
-
         //리스트뷰 변수
         adapter = new ListViewAdapter(); //리스트에 adpater 연결
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                adapter.clearItem();
-                data = getJsonTempData();
-
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        viewBinding.listView.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
-                    }
-                });
-            }
-        }).start();
+        initializeListData();
 
         viewBinding.btnUpdate.setOnClickListener(new View.OnClickListener() {  //새로고침 버튼
             @Override
@@ -107,6 +92,16 @@ public class ListFragment extends Fragment {
         });
 
         return viewBinding.getRoot();
+    }
+
+    public void initializeListData(){
+        String[] typeNameList = {"test-grp1", "test-grp2"};
+        adapter.clearItem();
+        for (String typeName: typeNameList) {
+            adapter.addItem(new ManLVItem(typeName));
+        }
+        viewBinding.listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
 
