@@ -2,6 +2,7 @@ package com.example.reptile;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -30,6 +31,8 @@ public class NotificationFragment extends Fragment {
     FragmentNotificationBinding viewBinding;
     private String TAG = this.getClass().getSimpleName();
 
+    private SharedPreferences preferences;
+
     String data_temp, data_hum, data_bright;
     String string;
 
@@ -46,16 +49,22 @@ public class NotificationFragment extends Fragment {
             activity = (Activity) context;
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewBinding = FragmentNotificationBinding.inflate(getLayoutInflater());
         adapter = new ListViewAdapter(); //리스트에 adpater 연결
+        preferences = getContext().getSharedPreferences("shared_noti", Context.MODE_PRIVATE);
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 //adapter.clearItem();
+                SharedPreferences.Editor editor = preferences.edit();
+
+                //editor.putString("tv1", change_target[0]);
+
                 while (true) {
                     data_temp = getJsonTempData();
                     data_hum = getJsonHumData();
@@ -65,10 +74,12 @@ public class NotificationFragment extends Fragment {
                         System.out.println("why?");
                         adapter.addItem(new NotiLVItem("RoRo 케이지의 온도를 확인하세요!"));
                     }
+                    /*
                     if (Integer.parseInt(data_hum) > 60)
                         adapter.addItem(new NotiLVItem("RoRo 케이지의 습도를 확인하세요!"));
                     if (Integer.parseInt(data_bright) > 60)
                         adapter.addItem(new NotiLVItem("RoRo 케이지의 조도를 확인하세요!"));
+                     */
 
                     //adapter.addItem(new ManLVItem(mid_list[i]));
 
@@ -118,6 +129,7 @@ public class NotificationFragment extends Fragment {
         try {
             URL url = new URL(queryUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
 
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Accept", "application/json");
@@ -243,6 +255,7 @@ public class NotificationFragment extends Fragment {
     public class ListViewAdapter extends BaseAdapter {
         ArrayList<NotiLVItem> items = new ArrayList<NotiLVItem>();
 
+
         @Override
         public int getCount() {
             return items.size();
@@ -290,4 +303,5 @@ public class NotificationFragment extends Fragment {
             return convertView;  //뷰 객체 반환
         }
     }
+
 }
