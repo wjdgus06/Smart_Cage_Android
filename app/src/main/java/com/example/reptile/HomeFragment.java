@@ -42,10 +42,6 @@ public class HomeFragment extends Fragment {
         viewBinding.verListRv.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         viewBinding.verListRv.setAdapter(vRVAdapter);
 
-        viewBinding.btnMoveRoro.setOnClickListener(view -> {
-            Intent intent = new Intent (getContext(), RoroActivity.class);
-            startActivity(intent);
-        });
         return viewBinding.getRoot();
     }
 
