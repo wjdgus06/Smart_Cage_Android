@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.reptile.databinding.FragmentListBinding;
 
@@ -51,28 +52,10 @@ public class ListFragment extends Fragment {
 
         //리스트뷰 변수
         adapter = new ListViewAdapter(); //리스트에 adpater 연결
-
         initializeListData();
 
-        viewBinding.btnUpdate.setOnClickListener(new View.OnClickListener() {  //새로고침 버튼
-            @Override
-            public void onClick(View view) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        adapter.clearItem();
-                        data = getJsonTempData();
-
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                viewBinding.listView.setAdapter(adapter);
-                                adapter.notifyDataSetChanged();
-                            }
-                        });
-                    }
-                }).start();
-            }
+        viewBinding.btnUpdate.setOnClickListener(view -> {
+            Toast.makeText(getContext(), "UPDATE!!" , Toast.LENGTH_SHORT).show();
         });
 
         viewBinding.btnNewCage.setOnClickListener(new View.OnClickListener() { //새 케이지 등록 버튼
@@ -95,7 +78,7 @@ public class ListFragment extends Fragment {
     }
 
     public void initializeListData(){
-        String[] typeNameList = {"test-grp1", "test-grp2"};
+        String[] typeNameList = (new GrpData()).getTypeList();
         adapter.clearItem();
         for (String typeName: typeNameList) {
             adapter.addItem(new ManLVItem(typeName));
@@ -104,6 +87,80 @@ public class ListFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
+    /* 리스트뷰 어댑터 */
+    public class ListViewAdapter extends BaseAdapter {
+        ArrayList<ManLVItem> items = new ArrayList<ManLVItem>();
+
+        @Override
+        public int getCount() {
+            return items.size();
+        }
+
+        public void addItem(ManLVItem item) {
+            items.add(item);
+        }
+
+        public void clearItem() {
+            items.clear();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return items.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup viewGroup) {
+            final Context context = viewGroup.getContext();
+            final ManLVItem itemList = items.get(position);
+
+            if(convertView == null) {
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.man_lv_cagelist, viewGroup, false);
+
+            } else {
+                View view = new View(context);
+                view = (View) convertView;
+            }
+
+            TextView tv_cage = (TextView) convertView.findViewById(R.id.tv_cage);
+
+
+            tv_cage.setText(itemList.getCage());
+
+            Log.d(TAG, "getView() - [ "+position+" ] "+itemList.getCage());
+
+            return convertView;  //뷰 객체 반환
+        }
+    }
+
+    /*
+     @Override
+            public void onClick(View view) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.clearItem();
+                        data = getJsonTempData();
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                viewBinding.listView.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                    }
+                }).start();
+            }
+     */
+
+    /*
 
     String getJsonTempData() {
 
@@ -165,58 +222,5 @@ public class ListFragment extends Fragment {
         }
         return result.toString();
     }
-
-
-    /* 리스트뷰 어댑터 */
-    public class ListViewAdapter extends BaseAdapter {
-        ArrayList<ManLVItem> items = new ArrayList<ManLVItem>();
-
-        @Override
-        public int getCount() {
-            return items.size();
-        }
-
-        public void addItem(ManLVItem item) {
-            items.add(item);
-        }
-
-        public void clearItem() {
-            items.clear();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return items.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup viewGroup) {
-            final Context context = viewGroup.getContext();
-            final ManLVItem itemList = items.get(position);
-
-            if(convertView == null) {
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = inflater.inflate(R.layout.man_lv_cagelist, viewGroup, false);
-
-            } else {
-                View view = new View(context);
-                view = (View) convertView;
-            }
-
-            TextView tv_cage = (TextView) convertView.findViewById(R.id.tv_cage);
-
-
-            tv_cage.setText(itemList.getCage());
-
-            Log.d(TAG, "getView() - [ "+position+" ] "+itemList.getCage());
-
-            return convertView;  //뷰 객체 반환
-        }
-    }
-
+     */
 }
