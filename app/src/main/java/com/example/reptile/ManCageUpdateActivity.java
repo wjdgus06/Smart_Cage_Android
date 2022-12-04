@@ -44,47 +44,6 @@ public class ManCageUpdateActivity extends AppCompatActivity {
         //setContentView(R.layout.activity_man_cage_update);
 
 
-        Intent intent = getIntent();
-        String myData = intent.getStringExtra("group_name");
-
-
-        SharedPreferences preferences = getSharedPreferences("group", MODE_PRIVATE);
-        String grp_name = preferences.getString("grp_name","NO_GROUP");
-        // 그룹 새로 등록하기 전까지 처음 등록한 group이름 유지
-
-        System.out.println(grp_name);
-
-        editname = findViewById(R.id.editText);
-        aename = editname.getText().toString(); // ae이름
-
-        Registerbutton = (Button) findViewById(R.id.button4);
-        Registerbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                aedata = getAEname(grp_name); //ae 이름 조회
-                if(aedata.contains(aename))
-                {
-                    //입력한 ae와 동일한 이름을 가진 디바이스 존재
-                    // con 등록
-                    String JsonMsg = makeJsonMsg();
-                    SendJsonToServer(JsonMsg, aename, "temperature");
-                    SendJsonToServer(JsonMsg, aename, "humidity");
-                    SendJsonToServer(JsonMsg, aename, "brightness");
-                }
-                else
-                {
-                    Toast myToast = Toast.makeText(getApplicationContext(),
-                            "ae 이름을 확인하세요!", Toast.LENGTH_SHORT);
-                    myToast.show();
-                }
-
-
-
-            }
-        });
-
-        getAEname(grp_name); //ae 이름 조회
-
         viewBinding = ActivityManCageUpdateBinding.inflate(getLayoutInflater());
         setContentView(viewBinding.getRoot());
 
@@ -112,6 +71,53 @@ public class ManCageUpdateActivity extends AppCompatActivity {
             }
 
         });
+
+        Intent intent = getIntent();
+        String myData = intent.getStringExtra("group_name");
+
+
+        SharedPreferences preferences = getSharedPreferences("group", MODE_PRIVATE);
+        String grp_name = preferences.getString("grp_name","NO_GROUP");
+        // 그룹 새로 등록하기 전까지 처음 등록한 group이름 유지
+
+        System.out.println(grp_name);
+
+        editname = findViewById(R.id.editText);
+        aename = editname.getText().toString(); // ae이름
+
+        aename = "test-ae-1";
+
+        Registerbutton = (Button) findViewById(R.id.button4);
+        Registerbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                aedata = getAEname(grp_name); //ae 이름 조회
+
+                // aedata = getAEname("test-grp1");
+                if(aedata.contains(aename))
+                {
+                    //입력한 ae와 동일한 이름을 가진 디바이스 존재
+                    // con 등록
+                    String JsonMsg = makeJsonMsg();
+                    SendJsonToServer(JsonMsg, aename, "temperature");
+                    SendJsonToServer(JsonMsg, aename, "humidity");
+                    SendJsonToServer(JsonMsg, aename, "brightness");
+                }
+                else
+                {
+                    Toast myToast = Toast.makeText(getApplicationContext(),
+                            "ae 이름을 확인하세요!", Toast.LENGTH_SHORT);
+                    myToast.show();
+                }
+
+
+
+            }
+        });
+
+        getAEname(grp_name); //ae 이름 조회
+
+
     }
 
     String getAEname(String grp_name) {
@@ -198,6 +204,7 @@ public class ManCageUpdateActivity extends AppCompatActivity {
 
         String response="";
         String queryUrl = "http://182.221.64.162:7579/Mobius/"+ae_name+"/"+sensor;
+        System.out.println("con생성" + queryUrl);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
