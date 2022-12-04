@@ -137,7 +137,7 @@ public class NewGroupActivity extends AppCompatActivity {
 
             // inputStream으로 응답
             // 요 부분 잘 안됨....
-            if(responseCode==HttpURLConnection.HTTP_OK){
+            if(responseCode==201){
                 System.out.println("HTTP_OK");
                 is = connection.getInputStream();
                 // inputStream to String
@@ -153,14 +153,14 @@ public class NewGroupActivity extends AppCompatActivity {
                     bufferedReader.close();
 
                     response = stringBuffer.toString();
-
-                    System.out.println(response);
                 }
                 else
                     response = "Error";
                 System.out.println(response);
             }
-
+            else{
+                response = "Connection_Error";
+            }
         }
         catch(Exception e){
             e.printStackTrace();
