@@ -28,14 +28,6 @@
         app:layout_constraintStart_toEndOf="@id/text_user_id"
         app:layout_constraintBottom_toBottomOf="@id/text_user_id" />
 
-    <Button
-        android:id="@+id/btn_move_roro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="5dp"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ver_list_rv"
         android:layout_width="match_parent"

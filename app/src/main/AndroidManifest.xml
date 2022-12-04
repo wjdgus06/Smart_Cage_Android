@@ -16,14 +16,21 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".RoroSensorActivity"
+            android:name=".RecentPhotoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RoroActivity"
+            android:name=".SensorActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CageInfoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
