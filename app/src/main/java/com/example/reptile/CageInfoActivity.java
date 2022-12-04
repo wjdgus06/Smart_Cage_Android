@@ -39,6 +39,12 @@ public class CageInfoActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        viewBinding.btnPhoto.setOnClickListener(view -> {
+            Intent intent = new Intent(this, RecentPhotoActivity.class);
+            intent.putExtra("cageName", repName);
+            startActivity(intent);
+        });
+
         viewBinding.btnUpdateVal.setOnClickListener(view -> new Thread(new Runnable() {
             @Override
             public void run() {
@@ -65,6 +71,7 @@ public class CageInfoActivity extends AppCompatActivity {
         }).start());
         setContentView(viewBinding.getRoot());
     }
+
 
     String getJsonTempData(String cageName) {
 

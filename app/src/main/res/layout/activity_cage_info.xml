@@ -89,11 +89,12 @@
             android:layout_marginBottom="8dp"/>
 
         <Button
+            android:id="@+id/btn_photo"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_gray"
+            android:backgroundTint="@color/btn_photo"
             android:text="@string/recent_photos"
-            android:backgroundTint="@color/btn_photo"/>
+            android:textColor="@color/text_gray" />
     </LinearLayout>
 
     <TextView
