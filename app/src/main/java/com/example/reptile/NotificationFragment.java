@@ -1,10 +1,16 @@
 package com.example.reptile;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
+
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.StrictMode;
@@ -32,14 +38,20 @@ public class NotificationFragment extends Fragment {
     private String TAG = this.getClass().getSimpleName();
 
     private SharedPreferences preferences;
-
     String data_temp, data_hum, data_bright;
-    String string;
 
     Activity activity;
 
     //리스트뷰 변수
     ListViewAdapter adapter;
+
+    // Channel에 대한 id 생성
+    private static final String PRIMARY_CHANNEL_ID = "primary_notification_channel";
+    // Channel을 생성 및 전달해 줄 수 있는 Manager 생성
+    private NotificationManager mNotificationManager;
+
+    // Notification에 대한 ID 생성
+    private static final int NOTIFICATION_ID = 0;
 
     @Override
     public void onAttach(Context context) {
@@ -65,6 +77,7 @@ public class NotificationFragment extends Fragment {
 
                 //editor.putString("tv1", change_target[0]);
 
+                createNotificationChannel();
                 while (true) {
                     data_temp = getJsonTempData();
                     data_hum = getJsonHumData();
@@ -73,6 +86,7 @@ public class NotificationFragment extends Fragment {
                     if (Integer.parseInt(data_temp) > 60) {
                         System.out.println("why?");
                         adapter.addItem(new NotiLVItem("RoRo 케이지의 온도를 확인하세요!"));
+                        sendNotification();
                     }
                     /*
                     if (Integer.parseInt(data_hum) > 60)
@@ -302,6 +316,46 @@ public class NotificationFragment extends Fragment {
 
             return convertView;  //뷰 객체 반환
         }
+    }
+
+    //채널을 만드는 메소드
+    public void createNotificationChannel()
+    {
+        //notification manager 생성
+        mNotificationManager = (NotificationManager)
+                activity.getSystemService(NOTIFICATION_SERVICE);
+        // 기기(device)의 SDK 버전 확인 ( SDK 26 버전 이상인지 - VERSION_CODES.O = 26)
+        if(android.os.Build.VERSION.SDK_INT
+                >= android.os.Build.VERSION_CODES.O){
+            //Channel 정의 생성자( construct 이용 )
+            NotificationChannel notificationChannel = new NotificationChannel(PRIMARY_CHANNEL_ID
+                    ,"Test Notification",mNotificationManager.IMPORTANCE_HIGH);
+            //Channel에 대한 기본 설정
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.enableVibration(true);
+            notificationChannel.setDescription("Notification from Mascot");
+            // Manager을 이용하여 Channel 생성
+            mNotificationManager.createNotificationChannel(notificationChannel);
+        }
+
+    }
+
+    // Notification Builder를 만드는 메소드
+    private NotificationCompat.Builder getNotificationBuilder() {
+        NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(activity.getApplicationContext(), PRIMARY_CHANNEL_ID)
+                .setContentTitle("You've been notified!")
+                .setContentText("This is your notification text.")
+                .setSmallIcon(R.drawable.ic_baseline_more_vert);
+        return notifyBuilder;
+    }
+
+    // Notification을 보내는 메소드
+    public void sendNotification(){
+        // Builder 생성
+        NotificationCompat.Builder notifyBuilder = getNotificationBuilder();
+        // Manager를 통해 notification 디바이스로 전달
+        mNotificationManager.notify(NOTIFICATION_ID,notifyBuilder.build());
     }
 
 }
