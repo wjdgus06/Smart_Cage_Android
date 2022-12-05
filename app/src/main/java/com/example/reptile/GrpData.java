@@ -7,6 +7,9 @@ import java.util.List;
 public class GrpData {
     private static ArrayList<String> typeList = new ArrayList<String>(){{
         add("1414");
+        add("wizard");
+        add("turtle");
+        add("snake");
     }};
 
     public GrpData(){

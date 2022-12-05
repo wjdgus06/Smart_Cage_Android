@@ -9,28 +9,22 @@
 
 
     <ImageButton
-        android:id="@+id/imageBtn_lizard"
-        android:layout_width="135dp"
-        android:layout_height="135dp"
-        app:srcCompat="@drawable/grp_lizardxml"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="115dp" />
-
-    <ImageButton
         android:id="@+id/imageBtn_crocodile"
         android:layout_width="135dp"
         android:layout_height="135dp"
         app:srcCompat="@drawable/grp_crocodilexml"
         tools:layout_editor_absoluteX="185dp"
-        tools:layout_editor_absoluteY="285dp" />
+        tools:layout_editor_absoluteY="390dp" />
 
-    <ImageButton
-        android:id="@+id/imageBtn_turtle"
-        android:layout_width="135dp"
-        android:layout_height="135dp"
-        app:srcCompat="@drawable/grp_turtlexml"
-        tools:layout_editor_absoluteX="186dp"
-        tools:layout_editor_absoluteY="115dp" />
+    <Button
+        android:id="@+id/group_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:backgroundTint="#3E3E3E"
+        android:text="등록"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="575dp" />
 
     <ImageButton
         android:id="@+id/imageBtn_snake"
@@ -38,7 +32,23 @@
         android:layout_height="135dp"
         app:srcCompat="@drawable/grp_snakexml"
         tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="286dp" />
+        tools:layout_editor_absoluteY="391dp" />
+
+    <Button
+        android:id="@+id/imageBtn_lizard"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:drawableTop="@drawable/grp_lizardxml"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="219dp" />
+
+    <ImageButton
+        android:id="@+id/imageBtn_turtle"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:srcCompat="@drawable/grp_turtlexml"
+        tools:layout_editor_absoluteX="186dp"
+        tools:layout_editor_absoluteY="220dp" />
 
     <TextView
         android:id="@+id/group"
@@ -62,15 +72,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/group" />
 
-    <Button
-        android:id="@+id/group_register"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:backgroundTint="#3E3E3E"
-        android:text="등록"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="436dp" />
+        android:text="GroupName"
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="182dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
