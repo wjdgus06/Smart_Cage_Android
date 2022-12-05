@@ -10,6 +10,7 @@ public class GrpData {
         add("wizard");
         add("turtle");
         add("snake");
+        add("testcameragrp2");
     }};
 
     public GrpData(){
