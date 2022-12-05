@@ -3,5 +3,5 @@
     <item
         android:drawable="@drawable/img_basic_cage3"
         android:width="130dp"
-        android:height="130dp" />
+        android:height="110dp" />
 </layer-list>
