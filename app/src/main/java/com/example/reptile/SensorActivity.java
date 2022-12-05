@@ -52,10 +52,15 @@ public class SensorActivity extends AppCompatActivity {
         viewBinding.spinnerSensor.setAdapter(dataAdapter);
 
         viewBinding.spinnerSensor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            int[] imgDataList = {R.drawable.no_selected_data, R.drawable.img_graph_tem,
+                    R.drawable.img_graph_hum, 2022};
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // viewBinding.spinnerTest.setText(items[position]);
                 // 통계 이미지 만들어서 변경하도록 해야함
+                // 조도 통계 이미지 등록되면 조건문 지우기!
+                if(position != 3)
+                    viewBinding.imgGraph.setImageResource(imgDataList[position]);
             }
 
             @Override
