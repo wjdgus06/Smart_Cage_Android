@@ -62,7 +62,7 @@ public class CageInfoActivity extends AppCompatActivity {
                         }
                     });
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(300000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
