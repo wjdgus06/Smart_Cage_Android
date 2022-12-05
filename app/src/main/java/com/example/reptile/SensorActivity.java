@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.reptile.databinding.ActivitySensorBinding;
 
@@ -84,6 +85,10 @@ public class SensorActivity extends AppCompatActivity {
                 SendJsonToServer(JsonMsg, repName, "temperature");
                 // SendJsonToServer(JsonMsg, repName, "humidity");
                 // SendJsonToServer(JsonMsg, repName, "brightness");
+
+                Toast myToast = Toast.makeText(getApplicationContext(),
+                        "요청을 전송했습니다.", Toast.LENGTH_SHORT);
+                myToast.show();
             }
         });
     }
