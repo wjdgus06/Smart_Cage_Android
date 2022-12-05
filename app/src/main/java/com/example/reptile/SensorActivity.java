@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.reptile.databinding.ActivitySensorBinding;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.json.JSONStringer;
 
 import java.io.BufferedReader;
@@ -38,6 +39,7 @@ public class SensorActivity extends AppCompatActivity {
         viewBinding = ActivitySensorBinding.inflate(getLayoutInflater());
 
         String repName = getIntent().getStringExtra("cageName");
+        System.out.println("repName1 = " + repName);
         viewBinding.pageTitle.setText(repName+"'s 센서");
 
         String[] items = {"온도/습도/조도", "온도", "습도", "조도"};
@@ -76,43 +78,73 @@ public class SensorActivity extends AppCompatActivity {
 
         setContentView(viewBinding.getRoot());
 
+        /*
         EditText editTem = findViewById(R.id.edit_text_temp);
         String TemStr = editTem.getText().toString(); // 수정할 온도
-        int Tem = Integer.parseInt(TemStr);
+        // int Tem = Integer.parseInt(TemStr);
 
         EditText editHum= findViewById(R.id.edit_text_hum);
         String HumStr = editHum.getText().toString(); // 수정할 온도
-        int Hum = Integer.parseInt(HumStr);
+        // int Hum = Integer.parseInt(HumStr);
 
         EditText editlight = findViewById(R.id.edit_text_light);
         String lightStr = editlight.getText().toString(); // 수정할 온도
-        int light = Integer.parseInt(lightStr);
+        // int light = Integer.parseInt(lightStr);
         // + 수정할 조도, 습도 추가 가능
+        */
+
 
         btn_save = (Button) findViewById(R.id.savebutton);
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText editTem = findViewById(R.id.edit_text_temp);
+                String TemStr = editTem.getText().toString(); // 수정할 온도
+                // int Tem = Integer.parseInt(TemStr);
+
+                EditText editHum= findViewById(R.id.edit_text_hum);
+                String HumStr = editHum.getText().toString(); // 수정할 온도
+                // int Hum = Integer.parseInt(HumStr);
+
+                EditText editlight = findViewById(R.id.edit_text_light);
+                String lightStr = editlight.getText().toString(); // 수정할 온도
+                // int light = Integer.parseInt(lightStr);
+                // + 수정할 조도, 습도 추가 가능
 
                 // control cnt 존재 확인
+                String responseTem, responseHum, responseBright;
 
+                System.out.println("repName = " + repName);
 
-                // cin생성
-                String JsonMsgTem = makeJsonMsg(Tem);
-                String JsonMsgHum = makeJsonMsg(Hum);
-                String JsonMsgLight = makeJsonMsg(light);
-                SendJsonToServer(JsonMsgTem, repName, "temperature");
-                SendJsonToServer(JsonMsgHum, repName, "humidity");
-                SendJsonToServer(JsonMsgLight, repName, "brightness");
+                responseTem = CheckControl(repName, "temperature");
+                responseHum = CheckControl(repName, "humidity");
+                responseBright = CheckControl(repName, "brightness");
 
-                Toast myToast = Toast.makeText(getApplicationContext(),
-                        "요청을 전송했습니다.", Toast.LENGTH_SHORT);
-                myToast.show();
+                if(responseTem.equals("O") && responseHum.equals("O") && responseBright.equals("O")){
+                    // cin생성
+                    String JsonMsgTem = makeJsonMsg(TemStr);
+                    String JsonMsgHum = makeJsonMsg(HumStr);
+                    String JsonMsgLight = makeJsonMsg(lightStr);
+                    SendJsonToServer(JsonMsgTem, repName, "temperature");
+                    SendJsonToServer(JsonMsgHum, repName, "humidity");
+                    SendJsonToServer(JsonMsgLight, repName, "brightness");
+
+                    Toast myToast = Toast.makeText(getApplicationContext(),
+                            "요청을 전송했습니다.", Toast.LENGTH_SHORT);
+                    myToast.show();
+                }
+                else
+                {
+                    Toast myToast = Toast.makeText(getApplicationContext(),
+                            "케이지를 먼저 등록하세요.", Toast.LENGTH_SHORT);
+                    myToast.show();
+                }
+
             }
         });
     }
 
-    private static String makeJsonMsg(int Tem){
+    private static String makeJsonMsg(String con){
         String retMsg = "";
 
         JSONStringer jsonStringer = new JSONStringer();
@@ -120,7 +152,7 @@ public class SensorActivity extends AppCompatActivity {
         try{
             retMsg = jsonStringer.object()
                     .key("m2m:cin").object()
-                    .key("con").value(Tem)
+                    .key("con").value(con)
                     .endObject()
                     .endObject().toString();
             System.out.println(retMsg);
@@ -132,6 +164,48 @@ public class SensorActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return retMsg;
+    }
+
+    static public String CheckControl(String ae_name, String sensor){
+        // check
+        String response = "";
+        String mid = "";
+
+        String queryUrl = "http://182.221.64.162:7579/Mobius/" + ae_name + "/" + sensor + "/control";
+        // 그룹 조회
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        try {
+            // 그룹 조회하여 ae가 존재하는지 확인.
+            // ae 없으면 디바이스 등록하라는 toast message
+
+            URL url = new URL(queryUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            System.out.println(queryUrl);
+
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty("X-M2M-RI", "dks");
+            connection.setRequestProperty("X-M2M-Origin", "dks");
+            connection.setRequestProperty("Accept-Encoding","gzip, deflate, br");
+            connection.setRequestProperty("Content-Type", "application/vnd.onem2m-res+json; ty=9");
+
+            int responseCode = connection.getResponseCode();
+
+
+
+            System.out.println("reponsecode = " + responseCode);
+            if(responseCode == 200)
+                response = "O";
+            else
+                response = "X";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
     }
 
     static public String SendJsonToServer(String JsonMsg, String ae_name, String sensor){
