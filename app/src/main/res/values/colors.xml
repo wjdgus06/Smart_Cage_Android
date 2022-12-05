@@ -11,6 +11,7 @@
     <color name="et_gray">#D9D9D9</color>
     <color name="state_false_gray">#FBFBFB</color>
     <color name="btn_gray">#5A5A5A</color>
+    <color name="line_gray">#BFBFBF</color>
     <color name="text_gray">#302F2F</color>
     <color name="btn_photo">#DDF6DE</color>
     <color name="container_gray">#F4F2F2</color>

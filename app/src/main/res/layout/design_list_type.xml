@@ -5,14 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/line_gray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/text_type_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/text_gray"
         android:textSize="30sp"
         android:text="name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintTop_toTopOf="@id/line"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="2dp"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
