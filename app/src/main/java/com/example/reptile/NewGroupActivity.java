@@ -26,7 +26,7 @@ import java.net.URL;
 public class NewGroupActivity extends AppCompatActivity {
 
     EditText editName;
-    Button btn_Register;
+    Button btn_Register, btn_lizard, btn_turtle, btn_snake, btn_crocodile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +37,31 @@ public class NewGroupActivity extends AppCompatActivity {
         GrpData grpData = new GrpData();
 
         btn_Register = (Button) findViewById(R.id.group_register);
+        editName = findViewById(R.id.group_name);
+
+        btn_lizard = (Button) findViewById(R.id.btn_lizard);
+        btn_turtle = (Button) findViewById(R.id.btn_turtle);
+        btn_snake = (Button) findViewById(R.id.btn_snake);
+        btn_crocodile = (Button) findViewById(R.id.btn_crocodile);
+
+        btn_lizard.setOnClickListener(view -> {
+            editName.setText("wizard");
+        });
+
+        btn_turtle.setOnClickListener(view -> {
+            editName.setText("turtle");
+        });
+
+        btn_snake.setOnClickListener(view -> {
+            editName.setText("snake");
+        });
+
+        btn_crocodile.setOnClickListener(view -> {
+            editName.setText("crocodile");
+        });
+
 
         btn_Register.setOnClickListener(view -> {
-            editName = findViewById(R.id.group_name);
             String name = editName.getText().toString();
 
             if(name.length() == 0){
@@ -64,6 +86,7 @@ public class NewGroupActivity extends AppCompatActivity {
                 Intent intent = new Intent(NewGroupActivity.this, ManCageUpdateActivity.class);
                 intent.putExtra("group_name", name);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -83,20 +106,6 @@ public class NewGroupActivity extends AppCompatActivity {
                         .endObject()
                     .endObject().toString();
             System.out.println(retMsg);
-
-            /*
-            jsonStringer.object();
-            jsonStringer.key("m2m:grp");
-            jsonStringer.object();
-            jsonStringer.key("rn").value(name);
-            jsonStringer.key("mnm").value(5);
-            jsonStringer.key("mid").array();
-            jsonStringer.endArray();
-            jsonStringer.endObject();
-            jsonStringer.endObject();
-
-            System.out.println(retMsg);
-             */
 
             Log.d(TAG,"send string = " + retMsg);
         }
