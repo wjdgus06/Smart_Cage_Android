@@ -22,6 +22,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class HomeFragment extends Fragment {
@@ -47,14 +48,17 @@ public class HomeFragment extends Fragment {
 
     public void initializeListData(){
         ArrayList<String> typeNameList = (new GrpData()).getTypeList();
-        int drawInt = R.drawable.btnlizardxml;  // cage 기본 이미지
+        Random random = new Random();
+        int[] imgList = {R.drawable.img_basic_cage1, R.drawable.img_basic_cage2,
+                R.drawable.img_basic_cage3, R.drawable.img_basic_cage4 };
         for (String typeName: typeNameList) {
             ArrayList<ReptileData> cageDataList = new ArrayList<>();
             ArrayList<String> cageNameList = this.getCageDataByJson(typeName);
             if(cageNameList == null)
                 continue;;
             for(String cageName: cageNameList){
-                cageDataList.add(new ReptileData(cageName, drawInt));
+                int ranInt = (int) Math.random() * (imgList.length-0+1)
+                cageDataList.add(new ReptileData(cageName, imgList[ranInt]));
             }
             typeList.add(new TypeData(typeName, cageDataList));
             Log.d("TypeListTest", "initializeListData: " + typeName);
