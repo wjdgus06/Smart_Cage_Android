@@ -15,6 +15,7 @@
     <string name="light">☀ 조도 </string>
     <string name="graph">📊 그래프</string>
     <string name="ctl_temp">❤ 온도 조절 </string>
+    <string name="ctl_hum">💙 습도 조절 </string>
     <string name="ctl_light">🧡 조도 조절 </string>
     <string name="describe_cage_owner"> 님의 케이지 목록</string>
     <string name="describe">설명</string>

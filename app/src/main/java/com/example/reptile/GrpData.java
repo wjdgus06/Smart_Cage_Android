@@ -6,8 +6,7 @@ import java.util.List;
 
 public class GrpData {
     private static ArrayList<String> typeList = new ArrayList<String>(){{
-        add("test-grp1");
-        add("test-grp2");
+        add("1414");
     }};
 
     public GrpData(){
