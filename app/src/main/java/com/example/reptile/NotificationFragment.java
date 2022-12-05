@@ -160,6 +160,7 @@ public class NotificationFragment extends Fragment {
         String con = "";
 
         String queryUrl = "http://182.221.64.162:7579/Mobius/test-ae-1/temperature/la";
+        // ae이름 받아올 수 있게 변경해야 함... 알림은 한 개의 케이지에 대해서만 뜨도록 하기...어쩔 수 없어
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
