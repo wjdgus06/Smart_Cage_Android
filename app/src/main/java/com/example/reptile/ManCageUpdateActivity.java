@@ -30,6 +30,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+//케이지 등록하면 해당 ae에 label같은거 입력해서 센서 값 조절할떄, 확인후 cin값 전송...
 public class ManCageUpdateActivity extends AppCompatActivity {
 
     ActivityManCageUpdateBinding viewBinding;
