@@ -22,7 +22,7 @@ public class SettingFragment extends Fragment {
         viewBinding = FragmentSettingBinding.inflate(getLayoutInflater());
 
         viewBinding.btnLogout.setOnClickListener(view -> {
-            Intent intent = new Intent(getContext(), LoginActivity.class);
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
         });
         return viewBinding.getRoot();

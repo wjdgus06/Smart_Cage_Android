@@ -130,7 +130,7 @@ public class NotificationFragment extends Fragment {
                     });
 
                     try {
-                        Thread.sleep(60000); //1분 (5분으로 수정)
+                        Thread.sleep(300000); //1분 (5분으로 수정)
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
