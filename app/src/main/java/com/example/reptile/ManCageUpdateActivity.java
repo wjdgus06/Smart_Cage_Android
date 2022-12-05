@@ -35,7 +35,6 @@ public class ManCageUpdateActivity extends AppCompatActivity {
     ActivityManCageUpdateBinding viewBinding;
     Button Registerbutton;
     EditText editname;
-    String aename;
     String aedata;
 
     @Override
@@ -82,8 +81,6 @@ public class ManCageUpdateActivity extends AppCompatActivity {
 
         System.out.println(grp_name);
 
-        editname = findViewById(R.id.editText);
-        aename = editname.getText().toString(); // ae이름
 
         // aename = "test-ae-1";  테스트용
 
@@ -91,11 +88,17 @@ public class ManCageUpdateActivity extends AppCompatActivity {
         Registerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                editname = findViewById(R.id.editText);
+                String aename = editname.getText().toString(); // ae이름
+                System.out.println("aename_please = " + aename);
+
                 aedata = getAEname(grp_name); //ae 이름 조회
+                System.out.println("aedata = " + aedata);
 
                 // aedata = getAEname("test-grp1");
                 if(aedata.contains(aename))
-                {
+                { System.out.println("Find AeName");
+                    System.out.println("ae name = " + aename);
                     //입력한 ae와 동일한 이름을 가진 디바이스 존재
                     // con 등록
                     String JsonMsg = makeJsonMsg();
@@ -161,7 +164,7 @@ public class ManCageUpdateActivity extends AppCompatActivity {
 
             JSONObject jsonObject = new JSONObject(response).getJSONObject("m2m:grp");
             mid = jsonObject.optString("mid");
-            System.out.println(mid);
+            System.out.println("mid: " +  mid);
 
         } catch (Exception e) {
             e.printStackTrace();
