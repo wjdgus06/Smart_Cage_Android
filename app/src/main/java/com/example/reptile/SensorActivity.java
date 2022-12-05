@@ -79,17 +79,31 @@ public class SensorActivity extends AppCompatActivity {
         EditText editTem = findViewById(R.id.edit_text_temp);
         String TemStr = editTem.getText().toString(); // 수정할 온도
         int Tem = Integer.parseInt(TemStr);
+
+        EditText editHum= findViewById(R.id.edit_text_hum);
+        String HumStr = editHum.getText().toString(); // 수정할 온도
+        int Hum = Integer.parseInt(HumStr);
+
+        EditText editlight = findViewById(R.id.edit_text_light);
+        String lightStr = editlight.getText().toString(); // 수정할 온도
+        int light = Integer.parseInt(lightStr);
         // + 수정할 조도, 습도 추가 가능
 
         btn_save = (Button) findViewById(R.id.savebutton);
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // control cnt 존재 확인
+
+
                 // cin생성
-                String JsonMsg = makeJsonMsg(Tem);
-                SendJsonToServer(JsonMsg, repName, "temperature");
-                // SendJsonToServer(JsonMsg, repName, "humidity");
-                // SendJsonToServer(JsonMsg, repName, "brightness");
+                String JsonMsgTem = makeJsonMsg(Tem);
+                String JsonMsgHum = makeJsonMsg(Hum);
+                String JsonMsgLight = makeJsonMsg(light);
+                SendJsonToServer(JsonMsgTem, repName, "temperature");
+                SendJsonToServer(JsonMsgHum, repName, "humidity");
+                SendJsonToServer(JsonMsgLight, repName, "brightness");
 
                 Toast myToast = Toast.makeText(getApplicationContext(),
                         "요청을 전송했습니다.", Toast.LENGTH_SHORT);
