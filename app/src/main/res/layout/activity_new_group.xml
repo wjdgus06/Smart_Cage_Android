@@ -8,6 +8,38 @@
     tools:context=".NewGroupActivity">
 
 
+    <ImageButton
+        android:id="@+id/imageBtn_lizard"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:srcCompat="@drawable/grp_lizardxml"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="115dp" />
+
+    <ImageButton
+        android:id="@+id/imageBtn_crocodile"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:srcCompat="@drawable/grp_crocodilexml"
+        tools:layout_editor_absoluteX="185dp"
+        tools:layout_editor_absoluteY="285dp" />
+
+    <ImageButton
+        android:id="@+id/imageBtn_turtle"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:srcCompat="@drawable/grp_turtlexml"
+        tools:layout_editor_absoluteX="186dp"
+        tools:layout_editor_absoluteY="115dp" />
+
+    <ImageButton
+        android:id="@+id/imageBtn_snake"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:srcCompat="@drawable/grp_snakexml"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="286dp" />
+
     <TextView
         android:id="@+id/group"
         android:layout_width="wrap_content"
@@ -39,14 +71,6 @@
         android:text="등록"
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="436dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="117dp"
-        android:layout_height="112dp"
-        app:srcCompat="@drawable/grp_lizardxml"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="139dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
