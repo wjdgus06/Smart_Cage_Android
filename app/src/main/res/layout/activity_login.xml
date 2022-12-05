@@ -29,6 +29,7 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:padding="10dp"
+        android:text="sandwich"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_login" />
@@ -44,6 +45,7 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:padding="10dp"
+        android:text="sandwich123"
         app:layout_constraintEnd_toEndOf="@+id/et_id"
         app:layout_constraintStart_toStartOf="@+id/et_id"
         app:layout_constraintTop_toBottomOf="@+id/et_id" />
