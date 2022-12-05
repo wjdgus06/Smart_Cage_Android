@@ -49,15 +49,15 @@ public class HomeFragment extends Fragment {
     public void initializeListData(){
         ArrayList<String> typeNameList = (new GrpData()).getTypeList();
         Random random = new Random();
-        int[] imgList = {R.drawable.img_basic_cage1, R.drawable.img_basic_cage2,
-                R.drawable.img_basic_cage3, R.drawable.img_basic_cage4 };
+        int[] imgList = {R.drawable.xml_basic1, R.drawable.xml_basic2,
+                R.drawable.xml_basic3, R.drawable.xml_basic4 };
         for (String typeName: typeNameList) {
             ArrayList<ReptileData> cageDataList = new ArrayList<>();
             ArrayList<String> cageNameList = this.getCageDataByJson(typeName);
             if(cageNameList == null)
                 continue;;
             for(String cageName: cageNameList){
-                int ranInt = (int) Math.random() * (imgList.length-0+1)
+                int ranInt = (int) (Math.random() * (imgList.length-1));
                 cageDataList.add(new ReptileData(cageName, imgList[ranInt]));
             }
             typeList.add(new TypeData(typeName, cageDataList));
