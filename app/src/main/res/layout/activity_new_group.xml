@@ -8,47 +8,68 @@
     tools:context=".NewGroupActivity">
 
 
-    <ImageButton
-        android:id="@+id/imageBtn_crocodile"
+    <Button
+        android:id="@+id/btn_crocodile"
         android:layout_width="135dp"
         android:layout_height="135dp"
-        app:srcCompat="@drawable/grp_crocodilexml"
-        tools:layout_editor_absoluteX="185dp"
-        tools:layout_editor_absoluteY="390dp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="33dp"
+        android:backgroundTint="#CDCDCD"
+        android:drawableTop="@drawable/grp_crocodilexml"
+        android:text="crocodile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_snake"
+        app:layout_constraintTop_toBottomOf="@+id/btn_turtle" />
 
     <Button
         android:id="@+id/group_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="33dp"
         android:backgroundTint="#3E3E3E"
         android:text="등록"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="575dp" />
-
-    <ImageButton
-        android:id="@+id/imageBtn_snake"
-        android:layout_width="135dp"
-        android:layout_height="135dp"
-        app:srcCompat="@drawable/grp_snakexml"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="391dp" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_crocodile" />
 
     <Button
-        android:id="@+id/imageBtn_lizard"
+        android:id="@+id/btn_snake"
         android:layout_width="135dp"
         android:layout_height="135dp"
-        android:drawableTop="@drawable/grp_lizardxml"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="219dp" />
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#CDCDCD"
+        android:drawableTop="@drawable/grp_snakexml"
+        android:text="snake"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_lizard" />
 
-    <ImageButton
-        android:id="@+id/imageBtn_turtle"
+    <Button
+        android:id="@+id/btn_lizard"
         android:layout_width="135dp"
         android:layout_height="135dp"
-        app:srcCompat="@drawable/grp_turtlexml"
-        tools:layout_editor_absoluteX="186dp"
-        tools:layout_editor_absoluteY="220dp" />
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#CDCDCD"
+        android:drawableTop="@drawable/grp_lizardxml"
+        android:text="lizard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btn_turtle"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="33dp"
+        android:backgroundTint="#CDCDCD"
+        android:drawableTop="@drawable/grp_turtlexml"
+        android:text="turtle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_lizard"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/group"
@@ -76,9 +97,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GroupName"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="182dp" />
+        android:layout_marginTop="60dp"
+        android:text="파충류 종 선택하기"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_name" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

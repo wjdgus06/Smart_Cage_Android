@@ -84,20 +84,6 @@ public class NewGroupActivity extends AppCompatActivity {
                     .endObject().toString();
             System.out.println(retMsg);
 
-            /*
-            jsonStringer.object();
-            jsonStringer.key("m2m:grp");
-            jsonStringer.object();
-            jsonStringer.key("rn").value(name);
-            jsonStringer.key("mnm").value(5);
-            jsonStringer.key("mid").array();
-            jsonStringer.endArray();
-            jsonStringer.endObject();
-            jsonStringer.endObject();
-
-            System.out.println(retMsg);
-             */
-
             Log.d(TAG,"send string = " + retMsg);
         }
         catch(JSONException e)
