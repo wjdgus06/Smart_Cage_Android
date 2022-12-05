@@ -40,5 +40,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="436dp" />
 
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="117dp"
+        android:layout_height="112dp"
+        app:srcCompat="@drawable/grp_lizardxml"
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="139dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
