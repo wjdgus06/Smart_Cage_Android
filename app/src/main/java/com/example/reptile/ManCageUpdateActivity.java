@@ -36,6 +36,7 @@ public class ManCageUpdateActivity extends AppCompatActivity {
     ActivityManCageUpdateBinding viewBinding;
     Button Registerbutton;
     EditText editname;
+    EditText groupname;
     String aedata;
 
     @Override
@@ -72,18 +73,21 @@ public class ManCageUpdateActivity extends AppCompatActivity {
 
         });
 
+        /*
         Intent intent = getIntent();
         String myData = intent.getStringExtra("group_name");
 
 
         SharedPreferences preferences = getSharedPreferences("group", MODE_PRIVATE);
-        String grp_name = preferences.getString("grp_name","NO_GROUP");
+        // String grp_name = preferences.getString("grp_name","NO_GROUP");
         // 그룹 새로 등록하기 전까지 처음 등록한 group이름 유지
-
-        System.out.println(grp_name);
+        // 그냥 그룹 입력하는 칸을 만들어도 됨!
 
 
         // aename = "test-ae-1";  테스트용
+
+        grp_name = "lizard";
+        */
 
         Registerbutton = (Button) findViewById(R.id.button4);
         Registerbutton.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +97,9 @@ public class ManCageUpdateActivity extends AppCompatActivity {
                 String aename = editname.getText().toString(); // ae이름
                 System.out.println("aename_please = " + aename);
 
+                groupname = findViewById(R.id.editgroupname);  // 수정
+                String grp_name = groupname.getText().toString(); // 그룹이름
+
                 aedata = getAEname(grp_name); //ae 이름 조회
                 System.out.println("aedata = " + aedata);
 
@@ -100,12 +107,30 @@ public class ManCageUpdateActivity extends AppCompatActivity {
                 if(aedata.contains(aename))
                 { System.out.println("Find AeName");
                     System.out.println("ae name = " + aename);
+                    String responseT, responseH, responseB;
                     //입력한 ae와 동일한 이름을 가진 디바이스 존재
                     // con 등록
                     String JsonMsg = makeJsonMsg();
-                    SendJsonToServer(JsonMsg, aename, "temperature");
-                    SendJsonToServer(JsonMsg, aename, "humidity");
-                    SendJsonToServer(JsonMsg, aename, "brightness");
+                    responseT = SendJsonToServer(JsonMsg, aename, "temperature");
+                    responseH = SendJsonToServer(JsonMsg, aename, "humidity");
+                    responseB = SendJsonToServer(JsonMsg, aename, "brightness");
+
+                    if(responseT.equals("Error") || responseH.equals("Error") || responseB.equals("Error"))
+                    {
+
+                        Toast myToast = Toast.makeText(getApplicationContext(),
+                                "ae 등록애 실패하였습니다.", Toast.LENGTH_SHORT);
+                        myToast.show();
+                    }
+                    else
+                    {
+                        Toast myToast = Toast.makeText(getApplicationContext(),
+                                "ae 등록이 완료되었습니다.", Toast.LENGTH_SHORT);
+                        myToast.show();
+                        Intent intent = new Intent(ManCageUpdateActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
                 else
                 {
@@ -119,7 +144,7 @@ public class ManCageUpdateActivity extends AppCompatActivity {
             }
         });
 
-        getAEname(grp_name); //ae 이름 조회
+        // getAEname(grp_name); //ae 이름 조회
 
 
     }
@@ -258,11 +283,13 @@ public class ManCageUpdateActivity extends AppCompatActivity {
                     response = stringBuffer.toString();
                 }
                 else
+                {
                     response = "Error";
+                }
                 System.out.println(response);
             }
             else{
-                response = "Connection_Error";
+                response = "Error";
             }
         }
         catch(Exception e){
