@@ -27,7 +27,13 @@ public class CageInfoActivity extends AppCompatActivity {
         viewBinding = ActivityCageInfoBinding.inflate(getLayoutInflater());
 
         String repName = getIntent().getStringExtra("cageName");
+        String grpName = getIntent().getStringExtra("typeName");
         viewBinding.cageName.setText(repName);
+
+        if(grpName.equals("snake"))
+            viewBinding.photoProfile.setImageResource(R.drawable.grp_snake_img_xml);
+        else if (grpName.equals("turtle"))
+            viewBinding.photoProfile.setImageResource(R.drawable.grp_turtle_img_xml);
 
         viewBinding.btnBack.setOnClickListener(view -> {
             finish();

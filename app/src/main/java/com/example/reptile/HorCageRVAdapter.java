@@ -50,6 +50,7 @@ public class HorCageRVAdapter extends RecyclerView.Adapter<HorCageRVAdapter.View
         holder.imgBtn.setOnClickListener(view -> {
             Intent intent = new Intent(context, CageInfoActivity.class);
             intent.putExtra("cageName", cageList.get(position).getReptileName());
+            intent.putExtra("typeName", cageList.get(position).getGrpName());
             context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         });
     }

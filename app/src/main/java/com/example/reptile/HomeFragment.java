@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
                 continue;;
             for(String cageName: cageNameList){
                 int ranInt = (int) (Math.random() * (imgList.length));
-                cageDataList.add(new ReptileData(cageName, imgList[ranInt]));
+                cageDataList.add(new ReptileData(cageName, typeName, imgList[ranInt]));
             }
             typeList.add(new TypeData(typeName, cageDataList));
             Log.d("TypeListTest", "initializeListData: " + typeName);
