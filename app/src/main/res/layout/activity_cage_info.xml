@@ -209,7 +209,7 @@
             android:layout_height="wrap_content"
             android:textSize="28sp"
             android:textColor="@color/black"
-            android:text="OFF"
+            android:text="7820 lx"
             app:layout_constraintBottom_toBottomOf="@id/text_lig"
             app:layout_constraintStart_toEndOf="@id/text_lig"
             android:layout_marginStart="15dp"/>
