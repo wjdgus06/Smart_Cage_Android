@@ -10,6 +10,7 @@ public class GrpData {
         add("snake");
         add("turtle");
         add("crocodile");
+        add("frog");
     }};
 
     public GrpData(){

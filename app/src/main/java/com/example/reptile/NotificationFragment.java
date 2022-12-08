@@ -84,7 +84,7 @@ public class NotificationFragment extends Fragment {
                     data_bright = getJsonBrightData();
                     NOTIFICATION_ID = 0;
 
-                    if (Integer.parseInt(data_temp) > 60) {
+                    if (Integer.parseInt(data_temp) > 0) {
                         adapter.addItem(new NotiLVItem("RoRo 케이지의 온도를 확인하세요!"));
                         sendNotification("RoRo 케이지의 온도를 확인하세요!");
                         System.out.println("noti1");
@@ -97,7 +97,7 @@ public class NotificationFragment extends Fragment {
                         e.printStackTrace();
                     }
 
-                    if (Integer.parseInt(data_hum) > 60){
+                    if (Integer.parseInt(data_hum) > 0){
                         NOTIFICATION_ID = 1;
                         adapter.addItem(new NotiLVItem("RoRo 케이지의 습도를 확인하세요!"));
                         sendNotification("RoRo 케이지의 습도를 확인하세요!");
@@ -109,7 +109,7 @@ public class NotificationFragment extends Fragment {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    if (Integer.parseInt(data_bright) > 60) {
+                    if (Integer.parseInt(data_bright) > 0) {
                         NOTIFICATION_ID = 2;
                         adapter.addItem(new NotiLVItem("RoRo 케이지의 조도를 확인하세요!"));
                         sendNotification("RoRo 케이지의 조도를 확인하세요!");
@@ -159,7 +159,7 @@ public class NotificationFragment extends Fragment {
         String response = "";
         String con = "";
 
-        String queryUrl = "http://182.221.64.162:7579/Mobius/test-ae-1/temperature/la";
+        String queryUrl = "http://182.221.64.162:7579/Mobius/roro/temperature/la";
         // ae이름 받아올 수 있게 변경해야 함... 알림은 한 개의 케이지에 대해서만 뜨도록 하기...어쩔 수 없어
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -205,7 +205,7 @@ public class NotificationFragment extends Fragment {
         String response_hum = "";
         String con_hum = "";
 
-        String queryUrl_hum = "http://182.221.64.162:7579/Mobius/test-ae-1/humidity/la";
+        String queryUrl_hum = "http://182.221.64.162:7579/Mobius/roro/humidity/la";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -249,7 +249,7 @@ public class NotificationFragment extends Fragment {
         String response_bright = "";
         String con_bright = "";
 
-        String queryUrl_bright = "http://182.221.64.162:7579/Mobius/test-ae-1/brightness/la";
+        String queryUrl_bright = "http://182.221.64.162:7579/Mobius/roro/brightness/la";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
