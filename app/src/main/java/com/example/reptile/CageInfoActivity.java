@@ -34,6 +34,8 @@ public class CageInfoActivity extends AppCompatActivity {
             viewBinding.photoProfile.setImageResource(R.drawable.grp_snake_img_xml);
         else if (grpName.equals("turtle"))
             viewBinding.photoProfile.setImageResource(R.drawable.grp_turtle_img_xml);
+        else if (grpName.equals("crocodile"))
+            viewBinding.photoProfile.setImageResource(R.drawable.grp_crocodile_img_xml);
 
         viewBinding.btnBack.setOnClickListener(view -> {
             finish();
