@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">reptile</string>
+    <string name="app_name">RoRo</string>
     <string name="login_en">Login</string>
     <string name="login">로그인</string>
     <string name="signup">회원가입</string>
