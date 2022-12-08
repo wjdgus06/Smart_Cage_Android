@@ -113,13 +113,21 @@ public class HomeFragment extends Fragment {
 
             Log.d("cageLength", "getCageDataByJson: " + mid_list.length);
             for (int i = 0; i < mid_list.length; i++){
-                if (i == 0)
-                    mid_list[i] = mid_list[i].substring(10, mid_list[i].length() - 1);
-                else if (i == mid_list.length - 1)
-                    mid_list[i] = mid_list[i].substring(9, mid_list[i].length() - 2);
-                else
-                    mid_list[i] = mid_list[i].substring(9, mid_list[i].length() - 1);
+                if (mid_list.length == 1){
+                    mid_list[i] = mid_list[i].substring(10, mid_list[i].length() - 2);
+                }
+                else{
+                    if (i == 0)
+                        mid_list[i] = mid_list[i].substring(10, mid_list[i].length() - 1);
+                    else if (i == mid_list.length - 1)
+                        mid_list[i] = mid_list[i].substring(9, mid_list[i].length() - 2);
+                    else
+                        mid_list[i] = mid_list[i].substring(9, mid_list[i].length() - 1);
 
+                }
+
+
+                System.out.println("mid: " + mid_list[i]);
                 typeList.add(mid_list[i]);
             }
 
