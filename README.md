@@ -18,3 +18,9 @@
 - 로그아웃
 
 + 추가적인 편의 기능
+
+## UI
+![image](https://github.com/wjdgus06/Smart_Cage_Android/assets/63927229/e60cd636-c3be-46e2-a98f-952cbd97217d)
+
+## Cage
+![image](https://github.com/wjdgus06/Smart_Cage_Android/assets/63927229/4c03bc9b-798c-49aa-8002-e69087dc4826)
