@@ -23,4 +23,12 @@
 ![image](https://github.com/wjdgus06/Smart_Cage_Android/assets/63927229/e60cd636-c3be-46e2-a98f-952cbd97217d)
 
 ## Cage
-![image](https://github.com/wjdgus06/Smart_Cage_Android/assets/63927229/4c03bc9b-798c-49aa-8002-e69087dc4826)
+![image](https://github.com/wjdgus06/Smart_Cage_Android/assets/63927229/333bd9e3-9742-48ce-93a4-1194a97eb9c0)
+
+## Demo
+https://youtu.be/9OKO2AgagLY
+![image](https://github.com/wjdgus06/Smart_Cage_Android/assets/63927229/bccc0b40-b26c-4138-9d48-55a2677a15bb)
+
+
+## 최종 결과
+[스마트 렙틸 케이지.pdf](https://github.com/user-attachments/files/15612703/default.pdf)
