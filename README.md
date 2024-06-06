@@ -27,8 +27,6 @@
 
 ## Demo
 https://youtu.be/9OKO2AgagLY
-![image](https://github.com/wjdgus06/Smart_Cage_Android/assets/63927229/bccc0b40-b26c-4138-9d48-55a2677a15bb)
-
 
 ## 최종 결과
 [스마트 렙틸 케이지.pdf](https://github.com/user-attachments/files/15612703/default.pdf)
